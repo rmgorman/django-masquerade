@@ -22,7 +22,7 @@ def get_stop_redirect_url():
     else: return '/'
 
 def mask(request, template_name='masquerade/mask_form.html'):
-    if not request.user.is_masked and not request.user.is_staff:
+    if request.user.is_masked:
         return HttpResponseForbidden()
     elif not request.user.is_superuser and MASQUERADE_REQUIRE_SUPERUSER:
         return HttpResponseForbidden()
